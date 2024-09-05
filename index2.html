@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligne de Téléchargement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .download-container {
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            border-radius: 25px 0 0 25px;
+            transition: width 0.5s ease;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress">0%</div>
+        </div>
+        <button class="download-button" onclick="startDownload()">Télécharger</button>
+    </div>
+
+    <script>
+        function startDownload() {
+            let progressElement = document.getElementById('progress');
+            let width = 0;
+            let interval = setInterval(function () {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    progressElement.textContent = 'Téléchargement terminé!';
+                } else {
+                    width++;
+                    progressElement.style.width = width + '%';
+                    progressElement.textContent = width + '%';
+                }
+            }, 100); // Vitesse de téléchargement simulée
+        }
+    </script>
+</body>
+</html>
